@@ -14,7 +14,7 @@ function TaskForm({ onAddTask }) {
         }
  
         onAddTask(normalizedTitle);
-        setTitle;
+        setTitle("");
     }
  
     return (
