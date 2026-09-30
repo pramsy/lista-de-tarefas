@@ -1,21 +1,28 @@
 import TaskItem from "./TaskItem";
  
-function TaskList({ tasks, onToggleTask, onRemoveTask }) {
- 
+function TaskList({ tasks, totalTasks, onToggleTask, onRemoveTask }) {
     if (tasks.length === 0) {
+        const hasNoTasks = totalTasks === 0;
+
         return (
-            <div className="mt-6 rounded-xl border border-dashed border-slate-300 p-8 text-center">
-                <p className="font-medium text-slate-700">Nenhuma tarefa encontrada neste filtro</p>
-                <p className="mt-1 text-sm text-slate-500">Adicione uma tarefa ou escolha outro filtro</p>
+            <div className="py-12 text-center">
+                <p className="font-semibold text-[#354239]">
+                    {hasNoTasks ? "Sua lista está vazia" : "Nenhuma tarefa encontrada"}
+                </p>
+                <p className="mt-1 text-sm text-[#68736b]">
+                    {hasNoTasks
+                        ? "Adicione sua primeira tarefa para começar."
+                        : "Tente mudar os filtros de status ou prioridade."}
+                </p>
             </div>
         );
     }
- 
+
     return (
-        <ul className="mt-6 space-y-3">
+        <ul className="mt-5">
             {tasks.map((task) => (
                 <TaskItem
-                    key={tasks.id}
+                    key={task.id}
                     task={task}
                     onToggleTask={onToggleTask}
                     onRemoveTask={onRemoveTask}
@@ -24,5 +31,5 @@ function TaskList({ tasks, onToggleTask, onRemoveTask }) {
         </ul>
     );
 }
- 
+
 export default TaskList;

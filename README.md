@@ -1,79 +1,224 @@
-# Lista de tarefas
+# Lista de Tarefas
 
-Aplicacao web para organizar tarefas do dia a dia. O projeto foi desenvolvido com React e Tailwind CSS, utilizando componentes reutilizaveis e estado local para controlar as tarefas e os filtros.
+Aplicação de gerenciamento de tarefas desenvolvida com **React**, **Vite**, **Tailwind CSS** e **Capacitor**, permitindo cadastrar, organizar, concluir e excluir tarefas através de uma interface simples e responsiva.
 
-## Funcionalidades
+O projeto também pode ser executado como aplicativo Android utilizando o Capacitor.
 
-- Adicionar novas tarefas;
-- Marcar tarefas como concluidas ou pendentes;
-- Excluir tarefas;
-- Filtrar tarefas por:
-  - Todas;
-  - Pendentes;
-  - Concluidas;
-- Exibir a quantidade de tarefas pendentes;
-- Informar quando nao existem tarefas no filtro selecionado;
-- Layout responsivo para diferentes tamanhos de tela.
+## 📱 Sobre o projeto
 
-## Tecnologias
+O objetivo do projeto é praticar conceitos de desenvolvimento frontend com React, gerenciamento de estado, componentização e desenvolvimento de aplicações multiplataforma.
 
-- [React](https://react.dev/);
-- [Vite](https://vite.dev/);
-- [Tailwind CSS](https://tailwindcss.com/);
-- JavaScript;
-- ESLint.
+Atualmente, a aplicação permite:
 
-## Pre-requisitos
+* Adicionar novas tarefas
+* Definir uma categoria opcional
+* Definir uma prioridade opcional
+* Definir uma data e horário opcionais para realizar a tarefa
+* Registrar automaticamente a data e hora de criação
+* Marcar tarefas como concluídas
+* Excluir tarefas
+* Filtrar tarefas por status e prioridade
+* Organizar automaticamente as tarefas por prioridade
+* Acompanhar o progresso das tarefas concluídas
+* Usar a interface responsiva na web e no Android
+* Executar a aplicação como aplicativo Android através do Capacitor
 
-- Node.js instalado;
-- npm instalado.
+## 🚀 Tecnologias utilizadas
 
-## Como executar
+* **React**
+* **Vite**
+* **JavaScript**
+* **Tailwind CSS**
+* **Capacitor**
+* **Android**
+* **Git e GitHub**
 
-1. Clone o repositorio e acesse a pasta do projeto:
+## 📋 Informações das tarefas
 
-   ```bash
-   git clone <url-do-repositorio>
-   cd lista-de-tarefas
-   ```
-
-2. Instale as dependencias:
-
-   ```bash
-   npm install
-   ```
-
-3. Inicie o servidor de desenvolvimento:
-
-   ```bash
-   npm run dev
-   ```
-
-4. Acesse no navegador a URL exibida pelo Vite, normalmente `http://localhost:5173`.
-
-## Scripts disponiveis
-
-| Comando | Descricao |
-| --- | --- |
-| `npm run dev` | Inicia o servidor de desenvolvimento com atualizacao automatica. |
-| `npm run build` | Gera a versao de producao do projeto. |
-| `npm run preview` | Executa uma previa local da versao de producao. |
-| `npm run lint` | Verifica problemas de codigo com ESLint. |
-
-## Estrutura principal
+Cada tarefa possui atualmente a seguinte estrutura:
 
 ```text
-src/
-├── App.jsx                  # Componente principal e gerenciamento das tarefas
-├── index.css                # Importacao do Tailwind e estilos globais
-├── main.jsx                 # Ponto de entrada da aplicacao
-└── components/
-    ├── TaskFilters.jsx      # Filtros por status
-    ├── TaskForm.jsx         # Formulario de criacao
-    ├── TaskItem.jsx         # Exibicao e acoes de uma tarefa
-    └── TaskList.jsx         # Lista e estado vazio
+Tarefa
+├── Título        obrigatório
+├── Categoria     opcional
+├── Prioridade    opcional
+├── Data e horário para realizar a tarefa   opcional
+├── Data de criação
+└── Status        concluída ou pendente
 ```
 
-## Observacao
+### Categorias disponíveis
 
-As tarefas sao armazenadas somente no estado da aplicacao. Por isso, os dados nao sao persistidos em banco de dados ou `localStorage` e sao perdidos ao recarregar a pagina.
+* Sem categoria
+* Trabalho
+* Estudos
+* Pessoal
+* Compras
+* Outros
+
+### Prioridades disponíveis
+
+* Sem prioridade
+* Baixa
+* Média
+* Alta
+
+As tarefas são ordenadas automaticamente por prioridade: alta, média, baixa e, por último, sem prioridade. Os filtros de status e prioridade podem ser combinados.
+
+## 💾 Armazenamento e notificações
+
+As tarefas ficam atualmente apenas no estado da aplicação. Elas não são mantidas ao fechar ou atualizar a página. A data e o horário definidos para uma tarefa são armazenados como um valor ISO no objeto da tarefa e exibidos como prazo.
+
+O aplicativo ainda não agenda nem envia notificações. Para adicionar notificações locais no Android, será necessário implementar a persistência das tarefas e integrar um plugin de notificações do Capacitor.
+
+## 🖥️ Executando o projeto
+
+### Pré-requisitos
+
+Antes de executar o projeto, é necessário ter instalado:
+
+* Node.js
+* npm
+* Git
+
+### Instalação
+
+Clone o repositório:
+
+```bash
+git clone https://github.com/pramsy/lista-de-tarefas.git
+```
+
+Entre na pasta do projeto:
+
+```bash
+cd lista-de-tarefas
+```
+
+Instale as dependências:
+
+```bash
+npm install
+```
+
+### Executar em desenvolvimento
+
+```bash
+npm run dev
+```
+
+A aplicação estará disponível no endereço informado pelo Vite, normalmente:
+
+```text
+http://localhost:5173
+```
+
+## 📦 Gerando a versão de produção
+
+Para gerar os arquivos da aplicação:
+
+```bash
+npm run build
+```
+
+Os arquivos de produção serão gerados na pasta:
+
+```text
+dist/
+```
+
+## 📱 Executando no Android
+
+O projeto utiliza o **Capacitor** para disponibilizar a aplicação como aplicativo Android.
+
+Depois de gerar a versão de produção:
+
+```bash
+npm run build
+```
+
+Sincronize os arquivos com o projeto Android:
+
+```bash
+npx cap sync android
+```
+
+Para abrir o projeto no Android Studio:
+
+```bash
+npx cap open android
+```
+
+No Android Studio, selecione um dispositivo físico ou emulador e execute a aplicação.
+
+### Fluxo de atualização
+
+Sempre que houver alterações no código da aplicação:
+
+```bash
+npm run build
+npx cap sync android
+```
+
+Depois, execute novamente pelo Android Studio.
+
+## 📂 Estrutura do projeto
+
+```text
+lista-de-tarefas/
+├── src/
+│   ├── components/
+│   │   ├── TaskForm.jsx
+│   │   ├── TaskFilters.jsx
+│   │   ├── TaskItem.jsx
+│   │   └── TaskList.jsx
+│   ├── App.jsx
+│   └── ...
+├── public/
+├── android/
+├── dist/
+├── capacitor.config.*
+├── package.json
+└── README.md
+```
+
+## 🔄 Próximas melhorias
+
+Algumas funcionalidades planejadas para as próximas versões:
+
+* [ ] Persistência das tarefas no dispositivo
+* [ ] Notificações locais para tarefas com data e horário definidos
+* [ ] Filtro por categoria
+* [ ] Edição de tarefas
+* [ ] Criação de categorias personalizadas
+* [x] Filtro e ordenação por prioridade
+* [x] Melhorias na experiência mobile
+
+## 🎯 Objetivo de aprendizado
+
+Este projeto faz parte do processo de aprendizado e desenvolvimento frontend, com foco em:
+
+* Componentização com React
+* Hooks e gerenciamento de estado
+* Formulários controlados
+* Manipulação de listas
+* Estilização com Tailwind CSS
+* Organização de componentes
+* Build de aplicações web
+* Integração de aplicações web com Capacitor
+* Execução de aplicações React em dispositivos Android
+
+## 👨‍💻 Autor
+
+**Ramses Pierre**
+
+Desenvolvedor Full Stack Júnior
+
+GitHub:
+https://github.com/pramsy
+
+---
+
+## 📄 Licença
+
+Este projeto foi desenvolvido para fins de estudo e portfólio.
